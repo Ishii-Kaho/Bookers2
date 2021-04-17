@@ -13,3 +13,24 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.field, .actions{
+  margin-bottom: 10px;
+}
+
+main{
+  margin-top: 10px;
+}
+
+.container-xl, .container-lg, .container-md, .container-sm, .container{
+  max-width: 1140px;
+}
