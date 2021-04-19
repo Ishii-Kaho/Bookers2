@@ -1,15 +1,16 @@
 class BooksController < ApplicationController
 
-  def crete
-    @post_book = post_book.new(post_book.params)
+  def create
+    @post_book = PostBook.new(post_book_params)
     @post_book.user_id = current_user.id
-    post_book.save
-    redirect_to book_path
+    @post_book.save
+    redirect_to book_path(id: current_user.id)
   end
 
   def show
     @user = User.find(params[:id])
-    @post_book = PostBook.find(params[:id])
+    # ユーザーIDが〇〇（数字）の投稿を映す
+    @post_books = PostBook.where(user_id: params[:id])
     # そのユーザ（@user）に関連付けられた投稿（.post_books）のみ、@post_booksに渡すことができる↓
     # @post_books = @user.post_books.page(params[:page]).reverse_order
   end
@@ -17,6 +18,7 @@ class BooksController < ApplicationController
   def index
     @post_books = PostBook.all
     @post_book = PostBook.new
+    @user = User.find(current_user.id)
   end
 
   def destroy
@@ -28,7 +30,7 @@ class BooksController < ApplicationController
     private
 
   def post_book_params
-    params.require(:post_book).permit(:name, :opinion)
+    params.require(:post_book).permit(:title, :opinion)
   end
 
 end
