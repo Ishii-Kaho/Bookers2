@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<div class="container">
+<div class="container px-5 px-sm-0">
   <div class="row">
-    <div class="col-md-3" style="background-color: orange;">
-          <!--部分テンプレートの呼び出し↓-->
-      <%= render 'books/userinfo', post_books: @post_books %>
-  
-        
-    <div class="col-lg-8">
-  
+      <!--部分テンプレートの呼び出し↓-->
+      <%= render 'books/userinfo', post_book: @post_book, user: current_user %>
+
+
+    <div class="col-lg-8 offset-md-1">
+      <h2>Books</h2>
+
         <table class="table table-striped">
           <tbody>
             <% @post_books.each do |post_book| %>
@@ -21,9 +21,7 @@
                 <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
-</div>
+<br>
+

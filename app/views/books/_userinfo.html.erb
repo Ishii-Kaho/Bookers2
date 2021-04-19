@@ -1,22 +1,39 @@
-<% post_books.each do |post_book| %>
-<div>
-  <%= link_to post_book_path(post_book.id) do %>
-    <%= attachment_image_tag users, :profile_image_id %>
-  <% end %>
-  
-  <%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <p>name<%= post_book.name %></p>
-  <p>introduction<%= post_book.opinion %></p>
-</div>
-<% end %>
 
-<h1>New book</h1>
-<%= form_with model: @post_book, url:'/books', local:true do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Opinion</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create Book', class: "btn btn-block mb-3 btn btn-success" %>
-<% end %>
+  <div class="col-md-3">
+    <h2>User info</h2>
+    <div class="profile-container">
+      <%= attachment_image_tag user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
 
-<%= paginate post_books %>
+      <table class="table table-striped">
+          <tr></tr>
+          <tr>
+            <th>name</th>
+            <th><%= user.name %></th>
+          </tr>
+          <tr>
+            <th>introduction</th>
+            <th><%= user.introduction %></th>
+          </tr>
+        </tbody>
+      </table>
+      <div class="user-edit-btn">
+        <%= link_to edit_user_path(current_user.id), class: 'btn btn-block btn btn-outline-secondary' do %><i class="fa fa-user-cog" aria-hidden="true"></i><% end %>
+      </div>
+    </div>
+
+
+    <h2 class="mt-3">New book</h2>
+    <%= form_with model: post_book, url:'/books', local:true do |f| %>
+      <div class="form-group">
+        <h6 class="book-title">Title</h6>
+        <%= f.text_field :title %>
+      </div>
+      <div class="form-group">
+        <h6 class="book-opinion">Opinion</h6>
+        <%= f.text_area :opinion %>
+      </div>
+        <%= f.submit 'Create Book', class: "btn btn-block mb-3 btn btn-success" %>
+
+    <% end %>
+
+  </div>
