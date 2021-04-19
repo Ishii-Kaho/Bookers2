@@ -4,20 +4,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3" style="background-color: orange;">
-      <h2>User info</h2>
-    </div>
-    <% @post_books.each do |post_book| %>
-    <div>
-      <%= link_to post_book_path(post_book.id) do %>
-        <%= attachment_image_tag post_book, :image %>
-      <% end %>
-      <p><%= image_tag('sample-author1.jpg') %></p>
-      <p>name<%= post_book.user_name %></p>
-      <p>introduction：<%= post_book.introduction %></p>
-    </div>
-    <% end %>
-    
-    
+      <!--部分テンプレートの呼び出し↓-->
+      <%= render 'books/userinfo', post_books: @post_books %>
+         
     <div class="col-lg-8">
 
       <table class="table table-striped">
@@ -29,7 +18,7 @@
             <th colspan="3"></th>
           </tr>
         </thead>
-      
+ 
         <tbody>
           <% @posts.each do |post| %>
             <tr>

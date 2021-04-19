@@ -1,0 +1,22 @@
+<% post_books.each do |post_book| %>
+<div>
+  <%= link_to post_book_path(post_book.id) do %>
+    <%= attachment_image_tag users, :profile_image_id %>
+  <% end %>
+  
+  <%= attachment_image_tag post_image.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+  <p>name<%= post_book.name %></p>
+  <p>introduction<%= post_book.opinion %></p>
+</div>
+<% end %>
+
+<h1>New book</h1>
+<%= form_with model: @post_book, url:'/books', local:true do |f| %>
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Opinion</h4>
+  <%= f.text_area :body %>
+  <%= f.submit 'Create Book', class: "btn btn-block mb-3 btn btn-success" %>
+<% end %>
+
+<%= paginate post_books %>
