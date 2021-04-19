@@ -24,11 +24,11 @@ class BooksController < ApplicationController
     @post_book.destroy
     redirect_to books_path
   end
-  
+
     private
 
   def post_book_params
     params.require(:post_book).permit(:name, :opinion)
   end
-  
+
 end
