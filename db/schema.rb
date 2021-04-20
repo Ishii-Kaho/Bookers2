@@ -12,8 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2021_04_16_131438) do
 
-  create_table "post_books", id: false, force: :cascade do |t|
-    t.integer "id"
+  create_table "post_books", force: :cascade do |t|
     t.integer "user_id"
     t.text "title"
     t.text "opinion"

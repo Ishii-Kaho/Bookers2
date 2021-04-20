@@ -4,17 +4,17 @@
   <div class="row">
     <div class="col-md-3">
           <!--部分テンプレートの呼び出し↓-->
-      <%= render 'books/userinfo', post_books: @post_books %>
+      <%= render 'books/userinfo', post_book: @post_books, user: @user%>
 
 
     <div class="col-lg-8">
 
         <table class="table table-striped">
           <tbody>
-            <% @users.each do |user| %>
+            <% @post_books.each do |post_book| %>
               <tr>
-                <td><%= link_to @user.profile_image, user_path(user.id) %></td>
-                <td><%= link_to post_book.title, book_path(current_user.id) %></td>
+                <td><%= link_to @user.profile_image, user_path(@user.id) %></td>
+                <td><%= link_to post_book.title, book_path(post_book.id) %></td>
               </tr>
             <% end %>
           </tbody>

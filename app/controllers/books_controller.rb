@@ -3,14 +3,18 @@ class BooksController < ApplicationController
   def create
     @post_book = PostBook.new(post_book_params)
     @post_book.user_id = current_user.id
-    @post_book.save
-    redirect_to book_path(id: current_user.id)
+    if @post_book.save
+    redirect_to book_path(@post_book)
+    else
+      @post_books = PostBook.all
+      render 'index'
+    end
   end
 
   def show
-    @user = User.find(params[:id])
     # ユーザーIDが〇〇（数字）の投稿を映す
-    @post_books = PostBook.(params[:id])
+    @post_books = PostBook.find(params[:id])
+    @user = @post_books.user
     # そのユーザ（@user）に関連付けられた投稿（.post_books）のみ、@post_booksに渡すことができる↓
     # @post_books = @user.post_books.page(params[:page]).reverse_order
   end

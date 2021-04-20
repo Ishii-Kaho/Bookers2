@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      <h2>Edit Book</h2>
+      <h1>Edit Book</h1>
 
         <%= form_with model:@post_book, local:true do |f| %>
 
@@ -17,11 +17,9 @@
             <%= f.text_area :Opinion, autofocus: true, class: "form-control", id:"inputOpinion"%>
           </div>
 
-          <%= f.submit "Update Book", class: "btn btn-secondary" %>
+          <%= f.submit "Update Book", class: "btn btn-success" %>
         <% end %>
-        
-        <%= link_to post_book.title, book_path(current_user.id) %>
-        <%= link_to post_book.title, book_path(current_user.id) %>
+<!--book-showのリンクとdestroyのリンクを作成↓-->
     </div>
   </div>
 </div>
