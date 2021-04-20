@@ -11,9 +11,11 @@ class UsersController < ApplicationController
   end
 
   def index
-    @user = User.all
+    @users = User.all
+    @user = User.find(current_user.id)
+    @post_book = PostBook.new
   end
-  
+
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
