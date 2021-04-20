@@ -20,6 +20,8 @@
           <%= f.submit "Update Book", class: "btn btn-success" %>
         <% end %>
 <!--book-showのリンクとdestroyのリンクを作成↓-->
+        <%= link_to "show", book_path(@post_book.id) %>
+        <%= link_to "back", books_path %>
     </div>
   </div>
 </div>

@@ -18,6 +18,16 @@ class BooksController < ApplicationController
     # そのユーザ（@user）に関連付けられた投稿（.post_books）のみ、@post_booksに渡すことができる↓
     # @post_books = @user.post_books.page(params[:page]).reverse_order
   end
+  
+  def edit
+    @post_book = PostBook.find(params[:id])
+  end
+  
+  def update
+    @post_book = PostBook.find(params[:id])
+    @post_book.update(post_book_params)
+    redirect_to book_path(@post_book.id)
+  end
 
   def index
     @post_books = PostBook.all

@@ -24,7 +24,7 @@
             <tr>
               <!--ユーザーのアイコンを表示、リンク先→選択したユーザーの投稿一覧を表示↓ format: 'jpeg', fallback: "no_image.jpg"-->
               <td><%= link_to user_path(current_user.id) do %>
-              <%= attachment_image_tag post_book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg" %>
+              <%= attachment_image_tag post_book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
               <% end %>
               </td>
               <!--全ユーザーが投稿したタイトル一覧→選択した投稿の内容を表示（show）-->
