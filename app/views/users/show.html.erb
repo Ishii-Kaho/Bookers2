@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+          <!--部分テンプレートの呼び出し↓-->
+      <%= render 'books/userinfo', post_books: @post_books %>
+
+
+    <div class="col-lg-8">
+
+        <table class="table table-striped">
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= link_to @user.profile_image, user_path(user.id) %></td>
+                <td><%= link_to post_book.title, book_path(current_user.id) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

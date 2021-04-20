@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   def show
     @user = User.find(params[:id])
     # ユーザーIDが〇〇（数字）の投稿を映す
-    @post_books = PostBook.where(user_id: params[:id])
+    @post_books = PostBook.(params[:id])
     # そのユーザ（@user）に関連付けられた投稿（.post_books）のみ、@post_booksに渡すことができる↓
     # @post_books = @user.post_books.page(params[:page]).reverse_order
   end
