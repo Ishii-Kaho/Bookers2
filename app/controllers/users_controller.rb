@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     # 選択したユーザーの全ての投稿を表示させる
-    @post_books = @user.post_books
-    # @users = @user.post_books.page(params[:page]).reverse_order
+    @books = @user.books
+    # @users = @user.books.page(params[:page]).reverse_order
   end
 
   def edit
@@ -13,16 +13,22 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @user = User.find(current_user.id)
-    @post_book = PostBook.new
+    @book = Book.new
   end
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(current_user.id)
+    if
+      @user.update(user_params)
+      flash[:notice] = "You have updated user successfully."
+      redirect_to user_path(current_user.id)
+    else
+      render action: :edit
+    end
   end
 
   private
   def user_params
-    params.require(:user).permit(:title, :opinion, :profile_image)  end
+    params.require(:user).permit(:name, :introduction, :profile_image)
+  end
 end

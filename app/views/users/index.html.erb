@@ -1,9 +1,17 @@
 <p id="notice"><%= notice %></p>
 
 <div class="container px-5 px-sm-0">
+  
+      <% if @book.errors.any? %>
+        <%= @bok.errors.count %>error prohibited this obj from being saved:
+        <% @book.errors.full_messages.each do |message| %>
+          <%= message %>
+        <% end %>
+      <% end %>
+      
   <div class="row">
           <!--部分テンプレートの呼び出し↓-->
-      <%= render 'books/userinfo', post_book: @post_book, user: @user %>
+      <%= render 'books/userinfo', book: @book, user: @user %>
 
 
     <div class="col-lg-8 offset-md-1">
