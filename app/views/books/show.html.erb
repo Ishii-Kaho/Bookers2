@@ -19,7 +19,7 @@
                   <td>
                     <a>
                       <%= link_to user_path(@user.id) do %>
-                        <%= attachment_image_tag @books.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+                        <%= attachment_image_tag @books.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
                       <% end %>
                       <br>
                       <%= link_to @user.name, user_path(@user.id) %>
