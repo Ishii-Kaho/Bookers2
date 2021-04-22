@@ -18,7 +18,11 @@
         </tbody>
       </table>
       <div class="user-edit-btn">
-        <%= link_to edit_user_path(current_user.id), class: 'btn btn-block btn btn-outline-secondary' do %><i class="fa fa-user-cog" aria-hidden="true"></i><% end %>
+        <!--% if current_user.id == user.id %-->
+        <%= link_to edit_user_path(user.id), class: 'btn btn-block btn btn-outline-secondary' do %><i class="fas fa-user-cog" aria-hidden="true"></i><% end %>
+        <!--% else %-->
+        <!--%= link_to user_path(current_user.id), class: 'btn btn-block btn btn-outline-secondary' do %><i class="fa fa-user-cog" aria-hidden="true"></i><%# end %>-->
+        <!--% end %>-->
       </div>
     </div>
 

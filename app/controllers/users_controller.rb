@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  
+  
   def show
     @user = User.find(params[:id])
     # 選択したユーザーの全ての投稿を表示させる
@@ -7,7 +9,15 @@ class UsersController < ApplicationController
   end
 
   def edit
+    # 夜に編集元↓
     @user = User.find(params[:id])
+    # p current_user.id
+    # p params[:id].to_i
+    if  current_user.id == params[:id].to_i
+       @user = User.find(params[:id])
+    else
+       redirect_to user_path(current_user.id)
+    end
   end
 
   def index

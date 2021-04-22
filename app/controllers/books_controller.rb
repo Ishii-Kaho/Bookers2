@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
-
+  
+  
+  
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
@@ -14,15 +16,17 @@ class BooksController < ApplicationController
 
   def show
     # ユーザーIDが〇〇（数字）の投稿を映す
-    @books = Book.find(params[:id])
-
-    @user = @books.user
+    @book = Book.find(params[:id])
+    @booknew = Book.new
+    @user = @book.user
     # そのユーザ（@user）に関連付けられた投稿（.books）のみ、@booksに渡すことができる↓
     # @books = @user.books.page(params[:page]).reverse_order
   end
 
   def edit
     @book = Book.find(params[:id])
+    redirect_to books_path unless current_user.id == @book.user_id
+    
   end
 
   def update
@@ -53,5 +57,6 @@ class BooksController < ApplicationController
   def book_params
     params.require(:book).permit(:title, :body)
   end
+
 
 end
