@@ -18,7 +18,7 @@ class BooksController < ApplicationController
     # ユーザーIDが〇〇（数字）の投稿を映す
     @book = Book.find(params[:id])
     @booknew = Book.new
-    @book_comments = BookComments.all
+    @book_comments = BookComment.all
     @book_comment = BookComment.new
     @user = @book.user
     # そのユーザ（@user）に関連付けられた投稿（.books）のみ、@booksに渡すことができる↓

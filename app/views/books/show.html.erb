@@ -77,22 +77,22 @@
             </tbody>
           <% end %>
         </table>
-        <div class="comments">
+        <table class="comments">
           <% @book.book_comments.each do |book_comment| %>
-            <p><%= image_tag('sample-author1.jpg') %></p>
-            <%= book_comment.user.name %>
-            <%= book_comment.created_at.strftime('%Y/%m/%d') %><%= book_comment.comment %>
-              <% if book_comment.user == current_user %>
-              <div class="comment-delete">
-                <%= link_to "削除", book_book_comment_path(book_comment.image, comment), method: :delete %>
-              </div>
+            <tr><%= image_tag('no_image.jpg') %></tr>
+            <tr><%= book_comment.comment %></tr>
+            <td><%= link_to book_comment.user.name, user_path(@user.id) %></td>
+            <% if book_comment.user == current_user %>
+              <tr class="comment-delete">
+                <%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), class: "btn btn-danger", method: :delete %>
+              </tr>
               <% end %>
           <% end %>
 
-          </div>
+          </table>
           <div class="new-comment">
           <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
-            <%= f.text_area :book_comment, rows:'5',placeholder: "コメントをここに" %>
+            <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
             <%= f.submit "送信" %>
           <% end %>
           </div>

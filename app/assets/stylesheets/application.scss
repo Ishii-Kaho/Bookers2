@@ -47,6 +47,7 @@ main{
 table{
   width: 100%;
   margin-bottom: 1rem;
+  background-color: #fff;
 }
 
 body{
@@ -74,3 +75,6 @@ label{
   color: green;
 }
 
+.comment-delete{
+  padding: 10px;
+}
