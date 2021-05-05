@@ -15,6 +15,14 @@
             <th>introduction</th>
             <th><%= user.introduction %></th>
           </tr>
+            <tr>
+            <th>follows</th>
+            <th><%= link_to user.following_user.count, users_follow_path %></th>
+          </tr>
+            <tr>
+            <th>followers</th>
+            <th><%= link_to user.follower_user.count %></th>
+          </tr>
       </table>
       <div class="user-edit-btn">
         <!--% if current_user.id == user.id %-->

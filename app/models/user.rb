@@ -7,10 +7,15 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  # フォローの取得
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :follower_user, through: :followed, source: :follower
+  # フォロワーの取得
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+   # （自分がフォローしている人）followedが集まった集合体をfollowing_userとして、followerからfollowedを取得する
   has_many :following_user, through: :follower, source: :followed
+    # （自分をフォローしている人）followerが集まった集合体をfollower_userとして、followedからfollowerを取得する
+  has_many :follower_user, through: :followed, source: :follower
+
 
     # ユーザーをフォローする
   def follow(user_id)
