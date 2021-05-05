@@ -16,8 +16,14 @@ class User < ApplicationRecord
     # （自分をフォローしている人）followerが集まった集合体をfollower_userとして、followedからfollowerを取得する
   has_many :follower_user, through: :followed, source: :follower
 
+  # ユーザーをフォローする
+  def follow(other_user)
+    unless self == other_user
+      self.relationships.find_or_create_by(follow_id: other_user.id)
+    end
+  end
 
-    # ユーザーをフォローする
+  # ユーザーをフォローする
   def follow(user_id)
     follower.create(followed_id: user_id)
   end
@@ -31,7 +37,6 @@ class User < ApplicationRecord
   def following?(user)
     following_user.include?(user)
   end
-
 
   attachment :profile_image
 
