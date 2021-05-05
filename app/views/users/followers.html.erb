@@ -1,0 +1,40 @@
+   <div class="col-md-8 offset-md-1">
+      <h2>Follower User</h2>
+      <!--もし＠usersの中身がある場合は-->
+      <% if @users.exists? %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th></th>
+              <th></th>
+              <th></th>
+
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <!--フォローユーザーのアイコンを表示、リンク先→選択したユーザーのshowを表示↓ format: 'jpeg', fallback: "no_image.jpg"-->
+                <td><%= link_to user_path(@user) do %>
+                  <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size:'40x40' %>
+                <% end %>
+                </td>
+                <!--全ユーザーが投稿したタイトル一覧→選択した投稿の内容を表示（show）-->
+                <td><%= user.name %></td>
+                <td>フォロー数：<%= user.following_user.count %></td>
+                <td>フォロワー数：<%= user.follower_user.count %></td>
+                <td>
+                  <td><%= link_to 'Show', user_path(user.id) %></td>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <!--＠usersの中身がない場合は-->
+      <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
