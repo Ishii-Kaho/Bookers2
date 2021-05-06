@@ -38,9 +38,26 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
+def self.search(search, word)
+  if search == "forward_match"
+                @user = User.where("name LIKE?", "#{word}%")
+  elsif search == "background_match"
+                @user = User.where("name LIKE?", "%#{word}")
+  elsif search == "perfect_match"
+                @user = User.where("#{word}")
+  elsif search == "partial_match"
+                @user = User.where("name LIKE?", "$#{word}%")
+  else
+                @user = User.all
+  end
+end
+
+
+
   attachment :profile_image
 
   validates :name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 20 }
   validates :email, presence: true
   validates :introduction, length: { maximum: 50 }
+
 end

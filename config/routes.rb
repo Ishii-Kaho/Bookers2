@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get :followings, on: :member
     get :followers, on: :member
   end
+  
+  get 'search' => 'searches#search'
 
   resources :relationships, only: [:create, :destroy]
   # フォローする
