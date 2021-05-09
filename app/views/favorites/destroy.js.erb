@@ -1,0 +1,3 @@
+<!--getElementByIdで_favorite-btn.html.erbで指定したIDを取得する-->
+<!--document.getElementById('favorite_<%# @favorite.id %>').innerHTML = '<%#= j(render @favorite) %>'-->
+  $("#favorite_<%= @book.id %>").html("<%= j(render 'favorites/favorite-btn', book: @book) %>");

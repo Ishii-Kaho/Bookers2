@@ -70,3 +70,4 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 
 gem 'pry-byebug'
+gem 'jquery-rails'
