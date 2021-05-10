@@ -71,3 +71,4 @@ gem "refile", require: "refile/rails", github: 'manfe/refile'
 
 gem 'pry-byebug'
 gem 'jquery-rails'
+gem 'jp_prefecture'
